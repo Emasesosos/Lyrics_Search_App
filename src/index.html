@@ -4,13 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lyrics Search App</title>
+    <title>LyricsSearch</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <h1>Lyrics Search App</h1>
+    <header>
+        <h1>LyricsSearch</h1>
+        <form id="form">
+            <input type="text" id="search" placeholder="Enter Artist or song name...">
+            <button>Search</button>
+        </form>
+    </header>
+
+    <div id="result" class="container">
+        <p>Results will be displayed here</p>
+    </div>
+
+    <div id="more" class="container centered"></div>
 
 </body>
 
