@@ -51,9 +51,9 @@ window.getMoreSongs = async(url) => {
     // console.log('getMoreSongs: ', url);
     try {
 
-        // const resp = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
-        const resp = await fetch(url);
-        if(!resp.ok) throw 'No se pueddo realizar la petición';
+        const resp = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
+        // const resp = await fetch(url);
+        if(!resp.ok) throw 'No se pueddo realizar la petición';  
         const data = await resp.json();
         const artistSong = showData(data);
         result.innerHTML = artistSong;
