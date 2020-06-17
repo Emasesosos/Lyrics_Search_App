@@ -51,8 +51,8 @@ window.getMoreSongs = async(url) => {
     // console.log('getMoreSongs: ', url);
     try {
 
-        const resp = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
-        // const resp = await fetch(url);
+        // const resp = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
+        const resp = await fetch(url);
         if(!resp.ok) throw 'No se pueddo realizar la petición';
         const data = await resp.json();
         const artistSong = showData(data);
@@ -89,6 +89,34 @@ window.getMoreSongs = async(url) => {
 
     }
 };
+// Get Lyrics for song
+const getLyrics = async(artist, songTitle) => {
+
+    const apiURL = 'https://api.lyrics.ovh';
+    try {
+        const resp = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
+        if(!resp.ok) throw 'No se pudo realizar la petición';
+        const data = await resp.json();
+        const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
+        result.innerHTML = `
+            <h2><strong>${artist}</strong> - ${songTitle}</h2>
+            <span>${lyrics}</span>
+        `;
+        more.innerHTML = '';
+    } catch (err) {
+        throw err;
+    }
+
+};
+// Get Lyrics button Click
+result.addEventListener('click', (e) => {
+    const clickedEl = e.target;
+    if (clickedEl.tagName === 'BUTTON') {
+        const artist = clickedEl.getAttribute('data-artist');
+        const songTitle = clickedEl.getAttribute('data-songtitle');
+        getLyrics(artist, songTitle);
+    }
+});
 /* ************************************************************ */
 const change = (search) => {
     search.addEventListener('input', async(e) => {
